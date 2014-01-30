@@ -29,3 +29,6 @@ META-INF/
 
 ##Mac noise
 .DS_Store
+!/nbactions.xml
+!/dspace-xmlui/nbactions.xml
+!/dspace-xmlui/nb-configuration.xml
