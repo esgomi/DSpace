@@ -676,9 +676,9 @@
                 </map:pipeline>
                 
                 <map:pipeline>
-                        <!--<map:match pattern="**">-->
+                        <map:match pattern="**">
                         <map:mount check-reload="no" src="themes/themes.xmap" uri-prefix=""/>
-                        <!--</map:match>-->
+                        </map:match>
                 </map:pipeline>
 
                 <map:handle-errors>
