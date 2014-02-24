@@ -9,7 +9,7 @@
    <description>
    	DSpace open source software is a turnkey institutional repository application.
    </description>
-   <url>https://github.com/dspace/DSpace</url>
+   <url>https://github.com/esgomi/DSpace</url>
 
    <organization>
       <name>DuraSpace</name>
@@ -1309,7 +1309,7 @@
       <developerConnection>scm:git:git@github.com:DSpace/DSpace.git</developerConnection>
       <url>git@github.com:DSpace/DSpace.git</url>
      <tag>dspace-4.0</tag>
-  </scm>
+   </scm>
 
     <!--
         Distribution Management is currently used by the Continuum
