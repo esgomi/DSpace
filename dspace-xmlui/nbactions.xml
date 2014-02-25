@@ -12,7 +12,8 @@
             </goals>
             <properties>
                 <netbeans.deploy>true</netbeans.deploy>
-                <dspace.dir>/usr/share/dspace</dspace.dir>
+                <dspace.dir>${dspace.install.dir}</dspace.dir>
+                
                 
             </properties>
         </action>
@@ -27,7 +28,8 @@
             <properties>
                 <netbeans.deploy>true</netbeans.deploy>
                 <netbeans.deploy.clientUrlPart>${webpagePath}</netbeans.deploy.clientUrlPart>
-                <dspace.dir>/usr/share/dspace</dspace.dir>
+                <dspace.dir>${dspace.install.dir}</dspace.dir>
             </properties>
         </action>
+        
     </actions>
