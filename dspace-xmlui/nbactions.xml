@@ -13,8 +13,6 @@
             <properties>
                 <netbeans.deploy>true</netbeans.deploy>
                 <dspace.dir>${dspace.install.dir}</dspace.dir>
-                
-                
             </properties>
         </action>
         <action>
