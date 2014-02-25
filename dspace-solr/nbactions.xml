@@ -29,4 +29,5 @@
                 <dspace.dir>${dspace.install.dir}</dspace.dir>
             </properties>
         </action>
+        
     </actions>
