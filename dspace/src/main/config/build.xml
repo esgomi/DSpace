@@ -1054,9 +1054,29 @@ You may manually install this file by following these steps:
         <tstamp>
             <format property="build.yyyyMMdd" pattern="yyyyMMdd" />
         </tstamp>
-        <zip destfile="${build.yyyyMMdd}-dspace-jspui.zip" basedir="webapps" includes="jspui" update="true" />
-        <zip destfile="${build.yyyyMMdd}-dspace-xmlui.zip" basedir="webapps" includes="xmlui" update="true" />
-        <zip destfile="${build.yyyyMMdd}-dspace-solr.zip"  basedir="webapps" includes="solr"  update="true" />
+        
+        <zip destfile="${build.yyyyMMdd}-dspace-jspui.zip" basedir="webapps" includes="jspui/**" update="true" />
+        <zip destfile="${build.yyyyMMdd}-dspace-xmlui.zip" basedir="webapps" includes="xmlui/**" update="true" />
+        <zip destfile="${build.yyyyMMdd}-dspace-solr.zip"  basedir="webapps" includes="solr/**"  update="true" />
+        
+        <scp todir="${deploy.ssh.username}:${deploy.ssh.password}@${deploy.ssh.host}:/${dspace.install.dir}/webapps"
+             port="${deploy.ssh.port}"
+             trust="true"
+             file="${build.yyyyMMdd}-dspace-jspui.zip">
+        </scp>
+        
+        <scp todir="${deploy.ssh.username}:${deploy.ssh.password}@${deploy.ssh.host}:/${dspace.install.dir}/webapps"
+             port="${deploy.ssh.port}"
+             trust="true"
+             file="${build.yyyyMMdd}-dspace-xmlui.zip">
+        </scp>
+        
+        <scp todir="${deploy.ssh.username}:${deploy.ssh.password}@${deploy.ssh.host}:/${dspace.install.dir}/webapps"
+             port="${deploy.ssh.port}"
+             trust="true"
+             file="${build.yyyyMMdd}-dspace-solr.zip">
+        </scp>
+        
     </target>
 
 </project>
