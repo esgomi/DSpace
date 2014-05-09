@@ -1055,10 +1055,12 @@ You may manually install this file by following these steps:
             <format property="build.yyyyMMdd" pattern="yyyyMMdd" />
         </tstamp>
         
+        <!-- first, the 3 dspace modules are zipped to make scp transfer faster than file-by-file type of transfer -->
         <zip destfile="${build.yyyyMMdd}-dspace-jspui.zip" basedir="webapps" includes="jspui/**" update="true" />
         <zip destfile="${build.yyyyMMdd}-dspace-xmlui.zip" basedir="webapps" includes="xmlui/**" update="true" />
         <zip destfile="${build.yyyyMMdd}-dspace-solr.zip"  basedir="webapps" includes="solr/**"  update="true" />
         
+        <!-- then, the very same modules are transferred using scp and ssh login information (see build.deploy.properties) -->
         <scp todir="${deploy.ssh.username}:${deploy.ssh.password}@${deploy.ssh.host}:/${dspace.install.dir}/webapps"
              port="${deploy.ssh.port}"
              trust="true"
