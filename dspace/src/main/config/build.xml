@@ -1061,20 +1061,20 @@ You may manually install this file by following these steps:
         <zip destfile="${build.yyyyMMdd}-dspace-solr.zip"  basedir="webapps" includes="solr/**"  update="true" />
         
         <!-- then, the very same modules are transferred using scp and ssh login information (see build.deploy.properties) -->
-        <scp todir="${deploy.ssh.username}:${deploy.ssh.password}@${deploy.ssh.host}:/${dspace.install.dir}/webapps"
-             port="${deploy.ssh.port}"
+        <scp todir="${ssh.username}:${ssh.password}@${ssh.host}:/${dspace.install.dir}/webapps"
+             port="${ssh.port}"
              trust="true"
              file="${build.yyyyMMdd}-dspace-jspui.zip">
         </scp>
         
-        <scp todir="${deploy.ssh.username}:${deploy.ssh.password}@${deploy.ssh.host}:/${dspace.install.dir}/webapps"
-             port="${deploy.ssh.port}"
+        <scp todir="${ssh.username}:${ssh.password}@${ssh.host}:/${dspace.install.dir}/webapps"
+             port="${ssh.port}"
              trust="true"
              file="${build.yyyyMMdd}-dspace-xmlui.zip">
         </scp>
         
-        <scp todir="${deploy.ssh.username}:${deploy.ssh.password}@${deploy.ssh.host}:/${dspace.install.dir}/webapps"
-             port="${deploy.ssh.port}"
+        <scp todir="${ssh.username}:${ssh.password}@${ssh.host}:/${dspace.install.dir}/webapps"
+             port="${ssh.port}"
              trust="true"
              file="${build.yyyyMMdd}-dspace-solr.zip">
         </scp>
