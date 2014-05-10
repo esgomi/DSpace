@@ -1052,48 +1052,71 @@ You may manually install this file by following these steps:
     <!-- ============================================================= -->
     <target name="remote_deploy_webapps" depends=""
             description="remote deploy xmlui, jspui and solr webapps using scp and ssh">
+        <!-- generates a timestamp, useful when creating backup and zipping files -->
         <tstamp>
             <format property="build.yyyyMMdd" pattern="yyyyMMdd" />
         </tstamp>
         
-        <!-- first, the 3 dspace modules are zipped to make scp transfer faster than file-by-file type of transfer -->
+        <!-- at first, this procedure backups up 3 dspace main modules: xmlui, jspui and solr -->
+        <sshexec host="${ssh.host}" username="${ssh.username}" password="${ssh.password}" port="${ssh.port}" 
+                 command="mv ${dspace.dir}/webapps/solr/ ${dspace.dir}/webapps/backup-${build.yyyyMMdd}-solr/"
+                 trust="true" verbose="true"
+                 />
+        
+        <sshexec host="${ssh.host}" username="${ssh.username}" password="${ssh.password}" port="${ssh.port}" 
+                 command="mv ${dspace.dir}/webapps/jspui/ ${dspace.dir}/webapps/backup-${build.yyyyMMdd}-jspui/"
+                 trust="true" verbose="true"
+                 />
+        
+        <sshexec host="${ssh.host}" username="${ssh.username}" password="${ssh.password}" port="${ssh.port}" 
+                 command="mv ${dspace.dir}/webapps/xmlui/ ${dspace.dir}/webapps/backup-${build.yyyyMMdd}-xmlui/"
+                 trust="true" verbose="true"
+                 />
+        
+        <!-- the 3 dspace modules are zipped to make scp transfer faster than file-by-file type of transfer -->
         <zip destfile="${build.yyyyMMdd}-dspace-jspui.zip" basedir="webapps" includes="jspui/**" update="true" />
         <zip destfile="${build.yyyyMMdd}-dspace-xmlui.zip" basedir="webapps" includes="xmlui/**" update="true" />
         <zip destfile="${build.yyyyMMdd}-dspace-solr.zip"  basedir="webapps" includes="solr/**"  update="true" />
         
-        <!-- second, the very same modules are transferred using scp and ssh login information (see build.deploy.properties) -->
+        <!-- the very same modules are transferred using scp and ssh login information (see build.deploy.properties) -->
         <scp todir="${ssh.username}@${ssh.host}:/${dspace.dir}/webapps"
-             port="${ssh.port}" password="${ssh.password}" trust="true"
+             port="${ssh.port}" password="${ssh.password}" trust="true" verbose="true"
              file="${build.yyyyMMdd}-dspace-jspui.zip">
         </scp>
         
         <scp todir="${ssh.username}@${ssh.host}:/${dspace.dir}/webapps"
-             port="${ssh.port}" password="${ssh.password}" trust="true"
+             port="${ssh.port}" password="${ssh.password}" trust="true" verbose="true"
              file="${build.yyyyMMdd}-dspace-xmlui.zip">
         </scp>
         
         <scp todir="${ssh.username}@${ssh.host}:/${dspace.dir}/webapps"
-             port="${ssh.port}" password="${ssh.password}" trust="true"
+             port="${ssh.port}" password="${ssh.password}" trust="true" verbose="true"
              file="${build.yyyyMMdd}-dspace-solr.zip">
         </scp>
         
         <!-- 
-            third, unzip all the transferred files into the webapps dir. 
+            unzip all the transferred files into the webapps dir. 
             using ssh commands
         -->
         <sshexec host="${ssh.host}" username="${ssh.username}" password="${ssh.password}" port="${ssh.port}" 
-                 command="unzip ${dspace.dir}/webapps/${build.yyyyMMdd}-dspace-solr.zip ."
-                 trust="true"
+                 command="unzip ${dspace.dir}/webapps/${build.yyyyMMdd}-dspace-solr.zip ${dspace.dir}/webapps/"
+                 trust="true" verbose="true"
                  />
         
         <sshexec host="${ssh.host}" username="${ssh.username}" password="${ssh.password}" port="${ssh.port}" 
-                 command="unzip ${dspace.dir}/webapps/${build.yyyyMMdd}-dspace-jspui.zip ."
-                 trust="true"
+                 command="unzip ${dspace.dir}/webapps/${build.yyyyMMdd}-dspace-jspui.zip ${dspace.dir}/webapps/"
+                 trust="true" verbose="true"
                  />
         
         <sshexec host="${ssh.host}" username="${ssh.username}" password="${ssh.password}" port="${ssh.port}" 
-                 command="unzip ${dspace.dir}/webapps/${build.yyyyMMdd}-dspace-xmlui.zip ."
-                 trust="true"
+                 command="unzip ${dspace.dir}/webapps/${build.yyyyMMdd}-dspace-xmlui.zip ${dspace.dir}/webapps/"
+                 trust="true" verbose="true"
+                 />
+        
+        <!-- in the end, deletes all 3 zip files transferred to the server -->
+        <sshexec host="${ssh.host}" username="${ssh.username}" password="${ssh.password}" port="${ssh.port}" 
+                 command="rm -rf ${dspace.dir}/webapps/${build.yyyyMMdd}-dspace*.zip"
+                 trust="true" verbose="true"
                  />
         
     </target>
