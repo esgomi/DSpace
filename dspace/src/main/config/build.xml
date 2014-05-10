@@ -1059,17 +1059,17 @@ You may manually install this file by following these steps:
         
         <!-- at first, this procedure backups up 3 dspace main modules: xmlui, jspui and solr -->
         <sshexec host="${ssh.host}" username="${ssh.username}" password="${ssh.password}" port="${ssh.port}" 
-                 command="if [ -d '${dspace.dir}/webapps/solr' ]; then cd ${dspace.dir}/webapps; mv solr backup-${build.yyyyMMdd}-solr fi"
+                 command='if [ -d "${dspace.dir}/webapps/solr" ]; then cd ${dspace.dir}/webapps; mv solr backup-${build.yyyyMMdd}-solr; fi'
                  trust="true" verbose="true"
                  />
         
         <sshexec host="${ssh.host}" username="${ssh.username}" password="${ssh.password}" port="${ssh.port}" 
-                 command="if [ -d '${dspace.dir}/webapps/jspui' ]; then cd ${dspace.dir}/webapps; mv jspui backup-${build.yyyyMMdd}-jspui fi"
+                 command='if [ -d "${dspace.dir}/webapps/jspui" ]; then cd ${dspace.dir}/webapps; mv jspui backup-${build.yyyyMMdd}-jspui; fi'
                  trust="true" verbose="true"
                  />
         
         <sshexec host="${ssh.host}" username="${ssh.username}" password="${ssh.password}" port="${ssh.port}" 
-                 command="if [ -d '${dspace.dir}/webapps/xmlui' ]; then cd ${dspace.dir}/webapps; mv xmlui backup-${build.yyyyMMdd}-xmlui fi"
+                 command='if [ -d "${dspace.dir}/webapps/xmlui" ]; then cd ${dspace.dir}/webapps; mv xmlui backup-${build.yyyyMMdd}-xmlui; fi'
                  trust="true" verbose="true"
                  />
         
