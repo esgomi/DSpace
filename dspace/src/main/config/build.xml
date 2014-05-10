@@ -1059,17 +1059,17 @@ You may manually install this file by following these steps:
         
         <!-- at first, this procedure backups up 3 dspace main modules: xmlui, jspui and solr -->
         <sshexec host="${ssh.host}" username="${ssh.username}" password="${ssh.password}" port="${ssh.port}" 
-                 command="mv ${dspace.dir}/webapps/solr/ ${dspace.dir}/webapps/backup-${build.yyyyMMdd}-solr/"
+                 command="cd ${dspace.dir}/webapps; mv solr backup-${build.yyyyMMdd}-solr"
                  trust="true" verbose="true"
                  />
         
         <sshexec host="${ssh.host}" username="${ssh.username}" password="${ssh.password}" port="${ssh.port}" 
-                 command="mv ${dspace.dir}/webapps/jspui/ ${dspace.dir}/webapps/backup-${build.yyyyMMdd}-jspui/"
+                 command="cd ${dspace.dir}/webapps; mv jspui backup-${build.yyyyMMdd}-jspui"
                  trust="true" verbose="true"
                  />
         
         <sshexec host="${ssh.host}" username="${ssh.username}" password="${ssh.password}" port="${ssh.port}" 
-                 command="mv ${dspace.dir}/webapps/xmlui/ ${dspace.dir}/webapps/backup-${build.yyyyMMdd}-xmlui/"
+                 command="cd ${dspace.dir}/webapps; mv ${dspace.dir}/webapps/xmlui/ ${dspace.dir}/webapps/backup-${build.yyyyMMdd}-xmlui/"
                  trust="true" verbose="true"
                  />
         
@@ -1099,23 +1099,23 @@ You may manually install this file by following these steps:
             using ssh commands
         -->
         <sshexec host="${ssh.host}" username="${ssh.username}" password="${ssh.password}" port="${ssh.port}" 
-                 command="unzip ${dspace.dir}/webapps/${build.yyyyMMdd}-dspace-solr.zip ${dspace.dir}/webapps/"
+                 command="cd ${dspace.dir}/webapps; unzip ${build.yyyyMMdd}-dspace-solr.zip;"
                  trust="true" verbose="true"
                  />
         
         <sshexec host="${ssh.host}" username="${ssh.username}" password="${ssh.password}" port="${ssh.port}" 
-                 command="unzip ${dspace.dir}/webapps/${build.yyyyMMdd}-dspace-jspui.zip ${dspace.dir}/webapps/"
+                 command="cd ${dspace.dir}/webapps; unzip ${build.yyyyMMdd}-dspace-jspui.zip;"
                  trust="true" verbose="true"
                  />
         
         <sshexec host="${ssh.host}" username="${ssh.username}" password="${ssh.password}" port="${ssh.port}" 
-                 command="unzip ${dspace.dir}/webapps/${build.yyyyMMdd}-dspace-xmlui.zip ${dspace.dir}/webapps/"
+                 command="cd ${dspace.dir}/webapps; unzip ${build.yyyyMMdd}-dspace-xmlui.zip;"
                  trust="true" verbose="true"
                  />
         
-        <!-- in the end, deletes all 3 zip files transferred to the server -->
+        <!-- finishing touches to the deploy -->
         <sshexec host="${ssh.host}" username="${ssh.username}" password="${ssh.password}" port="${ssh.port}" 
-                 command="rm -rf ${dspace.dir}/webapps/${build.yyyyMMdd}-dspace*.zip"
+                 command="cd ${dspace.dir}/webapps; chown -hR dspace:users jspui xmlui solr;"
                  trust="true" verbose="true"
                  />
         
