@@ -1050,7 +1050,8 @@ You may manually install this file by following these steps:
     <!-- ============================================================= -->
     <!-- remote deploy xmlui, jspui and solr webapps using scp and ssh -->
     <!-- ============================================================= -->
-    <target name="remote_deploy_webapps" depends="">
+    <target name="remote_deploy_webapps" depends=""
+            description="remote deploy xmlui, jspui and solr webapps using scp and ssh">
         <tstamp>
             <format property="build.yyyyMMdd" pattern="yyyyMMdd" />
         </tstamp>
