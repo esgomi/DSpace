@@ -30,7 +30,9 @@ META-INF/
 ##Mac noise
 .DS_Store
 !/nbactions.xml
+!nbactions-environment.xml
 !/dspace-xmlui/nbactions.xml
 !/dspace-xmlui/nb-configuration.xml
 !/dspace-solr/nb-configuration.xml
 !/dspace-solr/nbactions.xml
+!build.deploy.properties
